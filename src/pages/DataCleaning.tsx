@@ -9,7 +9,8 @@ import {
   Circle,
   CheckCircle2,
   ChevronRight,
-  AlertCircle
+  AlertCircle,
+  RotateCcw
 } from 'lucide-react';
 import { 
   Chart as ChartJS, 
@@ -119,6 +120,7 @@ export default function DataCleaning() {
   const [activeStep, setActiveStep] = useState(0);
   const [viewMode, setViewMode] = useState<'chart' | 'table'>('chart');
   const [isPlaying, setIsPlaying] = useState(false);
+  const [dataSeed, setDataSeed] = useState(0);
 
   // Generate stable raw data
   const rawDataset = useMemo(() => {
@@ -156,7 +158,7 @@ export default function DataCleaning() {
       data.push({ time, temp, do: d, ph });
     }
     return data;
-  }, []);
+  }, [dataSeed]);
 
   const processedDataMap = useMemo(() => {
     const process = (metricKey: 'temp' | 'do' | 'ph') => {
@@ -281,9 +283,9 @@ export default function DataCleaning() {
         {
           label: '原始基准',
           data: activeStep >= 2 ? data.points.map(p => p.raw) : [],
-          borderColor: '#E5E5E7',
-          borderWidth: 1.5,
-          borderDash: [5, 5],
+          borderColor: '#9CA3AF',
+          borderWidth: 2,
+          borderDash: [4, 4],
           pointRadius: 0,
           tension: 0.4,
           fill: false,
@@ -362,9 +364,21 @@ export default function DataCleaning() {
 
             <div className="mt-12 space-y-6">
               <div className="p-6 bg-gray-50 rounded-[1.5rem] space-y-4">
-                <div className="flex items-center gap-3 text-[#1D1D1F] text-sm font-black mb-4 pb-4 border-b border-gray-200 uppercase tracking-wider">
-                  <Info size={18} className="text-[#007AFF]" />
-                  数据洞察总览
+                <div className="flex items-center justify-between border-b border-gray-200 pb-4 mb-4">
+                  <div className="flex items-center gap-3 text-[#1D1D1F] text-sm font-black uppercase tracking-wider">
+                    <Info size={18} className="text-[#007AFF]" />
+                    数据洞察总览
+                  </div>
+                  <button 
+                    onClick={() => {
+                      setDataSeed(prev => prev + 1);
+                      setActiveStep(0);
+                      setIsPlaying(false);
+                    }}
+                    className="p-2 hover:bg-white rounded-full transition-colors text-[#86868B] hover:text-[#007AFF]"
+                  >
+                    <RotateCcw size={18} />
+                  </button>
                 </div>
                 <div className="space-y-3">
                   <div className="flex justify-between text-xs font-bold">
