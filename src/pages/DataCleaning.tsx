@@ -469,25 +469,25 @@ export default function DataCleaning() {
             </div>
           </div>
 
-          <div className="flex-1 overflow-hidden">
+          <div className="flex-1 overflow-y-auto custom-scrollbar lg:pr-2 lg:pb-0 pb-4 min-h-0">
             {viewMode === 'chart' ? (
-              <div className="h-[900px] lg:h-full flex flex-col gap-8">
+              <div className="flex flex-col gap-6 lg:gap-4 h-[900px] lg:h-full">
                 {(Object.keys(METRICS) as Array<keyof typeof METRICS>).map((key) => (
-                  <div key={key} className="flex-1 bg-white border border-[#E5E5E7] rounded-[2rem] p-6 relative group hover:border-[#007AFF]/30 transition-all shadow-sm">
-                    <div className="absolute top-6 left-8 z-10">
+                  <div key={key} className="flex-1 min-h-[250px] lg:min-h-0 bg-white border border-[#E5E5E7] rounded-[2rem] px-6 py-4 lg:p-6 relative group hover:border-[#007AFF]/30 transition-all shadow-sm flex flex-col">
+                    <div className="absolute top-4 lg:top-6 left-6 lg:left-8 z-10 shrink-0">
                       <div className="flex items-center gap-3">
                         <div className="w-3 h-3 rounded-full shadow-lg" style={{ backgroundColor: METRICS[key].color }} />
                         <span className="text-sm font-black text-[#1D1D1F] uppercase tracking-[0.1em]">{METRICS[key].label} ({METRICS[key].unit})</span>
                       </div>
                     </div>
-                    <div className="h-full pt-8">
+                    <div className="flex-1 pt-6 lg:pt-8 min-h-0 relative">
                       <Line data={getChartData(key)} options={chartOptions(key)} />
                     </div>
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="h-[600px] lg:h-full border border-[#E5E5E7] rounded-[2rem] overflow-hidden flex flex-col shadow-inner">
+              <div className="h-[600px] lg:h-auto lg:min-h-full border border-[#E5E5E7] rounded-[2rem] overflow-hidden flex flex-col shadow-inner">
                 <div className="flex-1 overflow-auto">
                   <table className="w-full text-sm text-left border-collapse">
                     <thead className="sticky top-0 bg-[#F5F5F7] border-b border-[#E5E5E7] z-10">
