@@ -70,7 +70,7 @@ export default function MoltingRisk() {
 
   const generateData = useCallback((): Entry[] => {
     const data: Entry[] = [];
-    const startDay = new Date(2024, 7, 15);
+    const startDay = new Date(2024, 2, 15);
     for (let i = 0; i < 20; i++) {
       const d = new Date(startDay.getFullYear(), startDay.getMonth(), startDay.getDate() + i);
       const dateStr = `${d.getMonth() + 1}/${d.getDate()}`;
@@ -85,7 +85,7 @@ export default function MoltingRisk() {
 
       data.push({
         date: dateStr,
-        isMoltingWindow: (d.getMonth() === 7 && d.getDate() >= 22 && d.getDate() <= 28),
+        isMoltingWindow: (d.getMonth() === 2 && d.getDate() >= 22 && d.getDate() <= 28),
         rawIntake: Math.max(5, Math.round(bI + (Math.random() * 30 - 15))),
         rawActivity: Math.max(5, Math.round(bA + (Math.random() * 30 - 15))),
         envDO: +(6.8 + (Math.random() * 0.4 - 0.2)).toFixed(1),
@@ -296,7 +296,7 @@ export default function MoltingRisk() {
               )}>
                 <div>
                   <div className="font-bold text-sm">历史蜕壳期</div>
-                  <div className="text-xs text-[#86868B] mt-1">窗口期 (08/22 - 08/28)</div>
+                  <div className="text-xs text-[#86868B] mt-1">窗口期 (03/22 - 03/28)</div>
                 </div>
                 {p?.ruleM ? <CheckCircle2 className="text-green-500" size={20} /> : <XCircle className="text-gray-200" size={20} />}
               </div>
