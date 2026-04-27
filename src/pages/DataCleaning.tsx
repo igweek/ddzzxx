@@ -39,8 +39,8 @@ ChartJS.register(
 
 const METRICS = {
   temp: { label: '水温', unit: '°C', color: '#f87171' },
-  do: { label: '溶氧', unit: 'mg/L', color: '#60a5fa' },
   ph: { label: 'pH值', unit: '', color: '#22c55e' },
+  do: { label: '溶氧', unit: 'mg/L', color: '#60a5fa' },
 };
 
 const STEPS = [
@@ -477,7 +477,9 @@ export default function DataCleaning() {
                     <div className="absolute top-4 lg:top-6 left-6 lg:left-8 z-10 shrink-0">
                       <div className="flex items-center gap-3">
                         <div className="w-3 h-3 rounded-full shadow-lg" style={{ backgroundColor: METRICS[key].color }} />
-                        <span className="text-sm font-black text-[#1D1D1F] uppercase tracking-[0.1em]">{METRICS[key].label} ({METRICS[key].unit})</span>
+                        <span className="text-sm font-black text-[#1D1D1F] uppercase tracking-[0.1em]">
+                          {METRICS[key].label}{METRICS[key].unit ? ` (${METRICS[key].unit})` : ''}
+                        </span>
                       </div>
                     </div>
                     <div className="flex-1 pt-6 lg:pt-8 min-h-0 relative">
@@ -495,7 +497,7 @@ export default function DataCleaning() {
                         <th className="px-8 py-5 font-black text-[#86868B] uppercase tracking-[0.2em] text-[11px]">时间刻(Time Step)</th>
                         {Object.keys(METRICS).map(k => (
                           <th key={k} className="px-8 py-5 font-black text-[#86868B] uppercase tracking-[0.2em] text-[11px]">
-                            {METRICS[k as keyof typeof METRICS].label} ({METRICS[k as keyof typeof METRICS].unit})
+                            {METRICS[k as keyof typeof METRICS].label}{METRICS[k as keyof typeof METRICS].unit ? ` (${METRICS[k as keyof typeof METRICS].unit})` : ''}
                           </th>
                         ))}
                       </tr>
