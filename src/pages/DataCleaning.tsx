@@ -40,7 +40,7 @@ ChartJS.register(
 const METRICS = {
   temp: { label: '水温', unit: '°C', color: '#f87171' },
   ph: { label: 'pH值', unit: '', color: '#22c55e' },
-  do: { label: '溶氧', unit: 'mg/L', color: '#60a5fa' },
+  do: { label: '溶氧量', unit: 'mg/L', color: '#60a5fa' },
 };
 
 const STEPS = [
